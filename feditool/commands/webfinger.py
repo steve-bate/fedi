@@ -2,8 +2,8 @@ from urllib.parse import urlparse
 
 import click
 
-from aptool.cli import cli
-from aptool.utils import format_json, get_json
+from feditool.cli import cli
+from feditool.utils import format_json, get_json
 
 
 @cli.command()
@@ -11,6 +11,7 @@ from aptool.utils import format_json, get_json
 @click.option("--uri-only", help="Only show the actor URI", is_flag=True)
 @click.argument("account")
 def webfinger(account: str, uri_only: bool, http: bool):
+    """Retrieves webinfo data."""
     parts = account.split("@")
     if len(parts) != 2:
         print("Invalid account syntax. Should be username@hostname")

@@ -4,15 +4,15 @@ import sys
 import click
 import httpx
 
-from aptool.cli import cli
+from feditool.commands.ap import activitypub
 
 
-@cli.command
+@activitypub.command
 @click.pass_obj
 @click.argument("box_uri")
 @click.argument("filepaths", nargs=-1)
 def post(config: dict, box_uri: str, filepaths: str | None):
-    """Post data to an inbox or outbox"""
+    """Post a resource to an inbox or outbox"""
     print(f"{box_uri=}")
     print(f"{filepaths=}")
 

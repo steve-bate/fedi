@@ -163,4 +163,5 @@ cython_debug/
 .ruff_cache
 .DS_Store
 
-aptool.toml
+feditool.toml
+configs

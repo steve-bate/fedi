@@ -2,8 +2,8 @@ from urllib.parse import urlparse
 
 import click
 
-from aptool.cli import cli
-from aptool.utils import format_json, get_json
+from feditool.cli import cli
+from feditool.utils import format_json, get_json
 
 
 @cli.command()
@@ -11,6 +11,8 @@ from aptool.utils import format_json, get_json
 @click.option("--index-only", help="Only show top-level nodeinfo index", is_flag=True)
 @click.argument("prefix", required=False, metavar="URL")
 def nodeinfo(config: dict, prefix: str, index_only: bool):
+    """Retrieves nodeinfo data. By default, it will follow
+    the nodeinfo index link to the actual nodeinfo data."""
     if prefix:
         prefix_url = urlparse(prefix)
         prefix = f"{prefix_url.scheme or 'https'}://{prefix_url.netloc or prefix}"

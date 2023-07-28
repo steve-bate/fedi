@@ -5,11 +5,12 @@ from urllib.parse import urljoin
 import click
 import httpx
 
-from aptool.cli import cli, templates
-from aptool.utils import format_json, get_collection_items, is_absolute_url
+from feditool.cli import templates
+from feditool.commands.ap import activitypub
+from feditool.utils import format_json, get_collection_items
 
 
-@cli.command
+@activitypub.command
 @click.pass_obj
 @click.argument("uri")
 @click.option(

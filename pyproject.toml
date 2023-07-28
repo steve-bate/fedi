@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "aptool"
+name = "feditool"
 version = "0.1.0"
-description = ""
+description = "A collection of command line tools for interacting with the Fediverse."
 authors = ["Steve Bate <svc-github@stevebate.net>"]
 readme = "README.md"
 
@@ -22,4 +22,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-aptool = "aptool.main:main"
+feditool = "feditool.main:main"
