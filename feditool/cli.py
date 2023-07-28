@@ -1,23 +1,28 @@
-import os
+from dataclasses import dataclass
 
 import click
 import jinja2
-import tomllib as toml
+
+from feditool.config import Configuration, InstanceConfig, load_config
+from feditool.exceptions import ConfigError
 
 templates = jinja2.Environment()
 
 
-class ConfigError(Exception):
-    def __init__(self, msg: str):
-        super().__init__(msg)
+@dataclass
+class ToolContext:
+    config: Configuration
+    instance: InstanceConfig
 
 
 @click.group
 @click.pass_context
 @click.option("--config", default="feditool.toml", help="Config file path")
-def cli(context: click.Context, config: str):
+@click.option("--instance", help="The target instance name")
+def cli(context: click.Context, config: str, instance: str):
     """Fediverse/ActivityPub Tools"""
-    if not os.path.exists(config):
-        raise ConfigError(f"Cannot find config file: {config}")
-    with open(config, "rb") as fp:
-        context.obj = toml.load(fp)
+    tool_config = load_config(config)
+    instance_config = tool_config.get_instance(instance)
+    if instance_config is None:
+        raise ConfigError(f"Unknown instance: {instance}")
+    context.obj = ToolContext(config=tool_config, instance=instance_config)

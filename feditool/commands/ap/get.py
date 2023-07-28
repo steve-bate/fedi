@@ -1,13 +1,15 @@
 from json import JSONDecodeError
 from typing import Any
-from urllib.parse import urljoin
 
 import click
-import httpx
 
-from feditool.cli import templates
 from feditool.commands.ap import activitypub
-from feditool.utils import format_json, get_collection_items
+from feditool.utils import (
+    format_json,
+    get_collection_items,
+    http_get,
+    resolve_uri,
+)
 
 
 @activitypub.command
@@ -40,21 +42,10 @@ def get(
     items: int | None = None,
 ):
     """GET a resource"""
-    prefix = config["server"]["prefix"]
-    if uri.startswith("@"):
-        # actor alias
-        uri = templates.from_string(config["actor"]["uri_template"]).render(
-            {"prefix": prefix, "username": uri[1:]}
-        )
-    else:
-        uri = urljoin(prefix, uri)
-
+    actor_config, uri = resolve_uri(config, uri)
+    print(uri)
     try:
-        response = httpx.get(uri, headers={"Accept": accept})
-        if response.is_error:
-            click.echo(
-                f"Request failed: {response.status_code} {response.reason_phrase}"
-            )
+        response = http_get(uri, accept=accept, actor_config=actor_config)
         try:
             body = response.json()
             if items and body.get("type") in ["Collection", "OrderedCollection"]:

@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 import click
 
 from feditool.cli import cli
-from feditool.utils import format_json, get_json
+from feditool.utils import format_json, http_get_json
 
 
 @cli.command()
@@ -18,11 +18,11 @@ def nodeinfo(config: dict, prefix: str, index_only: bool):
         prefix = f"{prefix_url.scheme or 'https'}://{prefix_url.netloc or prefix}"
     else:
         prefix = config["server"]["prefix"]
-    nodeinfo_index = get_json(f"{prefix}/.well-known/nodeinfo")
+    nodeinfo_index = http_get_json(f"{prefix}/.well-known/nodeinfo")
     if index_only:
         print(format_json(nodeinfo_index))
         return
     links = nodeinfo_index.get("links")
     if links:
         link = [link["href"] for link in links if "href" in link][-1]
-        print(format_json(get_json(link)))
+        print(format_json(http_get_json(link)))

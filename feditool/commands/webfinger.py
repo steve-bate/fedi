@@ -1,9 +1,7 @@
-from urllib.parse import urlparse
-
 import click
 
 from feditool.cli import cli
-from feditool.utils import format_json, get_json
+from feditool.utils import format_json, http_get_json
 
 
 @cli.command()
@@ -17,7 +15,7 @@ def webfinger(account: str, uri_only: bool, http: bool):
         print("Invalid account syntax. Should be username@hostname")
     scheme = "http" if http else "https"
     url = f"{scheme}://{parts[1]}/.well-known/webfinger?resource=acct:{account}"
-    data = get_json(url)
+    data = http_get_json(url)
     if uri_only:
         links = data.get("links")
         if links:

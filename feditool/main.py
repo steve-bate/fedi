@@ -5,6 +5,7 @@ import sys
 import click
 
 from feditool import cli
+from feditool.exceptions import ToolError
 
 
 def _import_commands():
@@ -32,7 +33,7 @@ def main():
             os.path.dirname(os.path.realpath(__file__))
         ).upper()
         cli.cli(auto_envvar_prefix=env_prefix)
-    except cli.ConfigError as ex:
+    except ToolError as ex:
         click.echo(click.style(ex.args[0], fg="red"))
         sys.exit(1)
 
