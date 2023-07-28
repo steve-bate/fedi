@@ -1,4 +1,4 @@
-from feditool.cli import cli
+from fedi.cli import cli
 
 
 @cli.group("ap")

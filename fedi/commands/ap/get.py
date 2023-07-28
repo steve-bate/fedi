@@ -3,8 +3,8 @@ from typing import Any
 
 import click
 
-from feditool.commands.ap import activitypub
-from feditool.utils import (
+from fedi.commands.ap import activitypub
+from fedi.utils import (
     format_json,
     get_collection_items,
     http_get,
@@ -43,7 +43,6 @@ def get(
 ):
     """GET a resource"""
     actor_config, uri = resolve_uri(config, uri)
-    print(uri)
     try:
         response = http_get(uri, accept=accept, actor_config=actor_config)
         try:

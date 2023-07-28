@@ -1,11 +1,12 @@
 import importlib
 import os
 import sys
+import traceback
 
 import click
 
-from feditool import cli
-from feditool.exceptions import ToolError
+from fedi import cli
+from fedi.exceptions import ToolError
 
 
 def _import_commands():
@@ -33,8 +34,11 @@ def main():
             os.path.dirname(os.path.realpath(__file__))
         ).upper()
         cli.cli(auto_envvar_prefix=env_prefix)
-    except ToolError as ex:
-        click.echo(click.style(ex.args[0], fg="red"))
+    except Exception as ex:
+        if "fedi_STACK" in os.environ:
+            traceback.print_exc()
+        else:
+            click.echo(click.style(ex.args[0], fg="red"))
         sys.exit(1)
 
 

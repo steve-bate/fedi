@@ -4,11 +4,11 @@ import sys
 import click
 import httpx
 
-from feditool.cli import ToolContext, templates
-from feditool.commands.ap import activitypub
-from feditool.config import BearerToken
-from feditool.exceptions import ToolError
-from feditool.utils import raise_for_status, resolve_uri
+from fedi.cli import ToolContext, templates
+from fedi.commands.ap import activitypub
+from fedi.config import BearerToken
+from fedi.exceptions import ToolError
+from fedi.utils import raise_for_status, resolve_uri
 
 
 @activitypub.command

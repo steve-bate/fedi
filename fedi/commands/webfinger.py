@@ -1,7 +1,7 @@
 import click
 
-from feditool.cli import cli
-from feditool.utils import format_json, http_get_json
+from fedi.cli import cli
+from fedi.utils import format_json, http_get_json
 
 
 @cli.command()

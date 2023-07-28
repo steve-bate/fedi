@@ -9,9 +9,9 @@ from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import JsonLexer
 
-from feditool.cli import ToolContext, templates
-from feditool.config import ActorConfig, BearerToken
-from feditool.exceptions import ToolError
+from fedi.cli import ToolContext, templates
+from fedi.config import ActorConfig, BearerToken
+from fedi.exceptions import ToolError
 
 
 def http_get(
@@ -106,7 +106,7 @@ def resolve_actor_uri(context: ToolContext, username: str):
 
 def resolve_uri(context: ToolContext, s: str):
     if not s.startswith("@"):
-        return s
+        return None, s
     parts = s[1:].split(".")
     actor_name = parts[0]
     actor_config, actor_uri = resolve_actor_uri(context, actor_name)

@@ -1,4 +1,4 @@
-# feditool
+# fedi
 
 A collection of command line tools for interacting with the Fediverse.
 
@@ -17,7 +17,7 @@ pip install git+<repo_url>
 ## Usage
 
 ```
-feditool  # prints help
+fedi  # prints help
 ```
 
 ## Maintainer

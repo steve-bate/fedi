@@ -3,8 +3,8 @@ from typing import Any
 
 import click
 
-from feditool.commands.ap import activitypub
-from feditool.utils import get_collection_items, get_uri, resolve_uri
+from fedi.commands.ap import activitypub
+from fedi.utils import get_collection_items, get_uri, resolve_uri
 
 
 class CollectionState:

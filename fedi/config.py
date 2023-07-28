@@ -5,7 +5,7 @@ from typing import Union
 import tomllib
 from dacite import from_dict
 
-from feditool.exceptions import ConfigError
+from fedi.exceptions import ConfigError
 
 
 @dataclass
