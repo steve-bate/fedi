@@ -1,8 +1,8 @@
 import os
+import tomllib
 from dataclasses import dataclass
 from typing import Union
 
-import tomllib
 from dacite import from_dict
 
 from fedi.exceptions import ConfigError

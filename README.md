@@ -7,7 +7,7 @@ A collection of command line tools for interacting with the Fediverse.
 
 ## Install
 
-For now, install it from the git repository. 
+For now, install it from the git repository.
 
 ```
 # TODO

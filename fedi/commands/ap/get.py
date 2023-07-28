@@ -4,12 +4,7 @@ from typing import Any
 import click
 
 from fedi.commands.ap import activitypub
-from fedi.utils import (
-    format_json,
-    get_collection_items,
-    http_get,
-    resolve_uri,
-)
+from fedi.utils import format_json, get_collection_items, http_get, resolve_uri
 
 
 @activitypub.command

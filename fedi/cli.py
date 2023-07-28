@@ -4,7 +4,6 @@ import click
 import jinja2
 
 from fedi.config import Configuration, InstanceConfig, load_config
-from fedi.exceptions import ConfigError
 
 templates = jinja2.Environment()
 

@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import sys
@@ -52,8 +53,15 @@ def is_writing_to_console():
     return os.isatty(sys.stdout.fileno())
 
 
+def json_formatter(o: Any):
+    if isinstance(o, datetime.datetime):
+        return o.isoformat()
+    else:
+        return o
+
+
 def format_json(json_data: dict, use_color: bool | None = None):
-    formatted_json = json.dumps(json_data, indent=2)
+    formatted_json = json.dumps(json_data, indent=2, default=json_formatter)
     if use_color or use_color is None and is_writing_to_console():
         lexer = JsonLexer()
         formatter = TerminalFormatter()

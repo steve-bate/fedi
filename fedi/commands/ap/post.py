@@ -7,7 +7,6 @@ import httpx
 from fedi.cli import ToolContext, templates
 from fedi.commands.ap import activitypub
 from fedi.config import BearerToken
-from fedi.exceptions import ToolError
 from fedi.utils import raise_for_status, resolve_uri
 
 

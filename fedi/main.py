@@ -6,7 +6,6 @@ import traceback
 import click
 
 from fedi import cli
-from fedi.exceptions import ToolError
 
 
 def _import_commands():
@@ -35,7 +34,7 @@ def main():
         ).upper()
         cli.cli(auto_envvar_prefix=env_prefix)
     except Exception as ex:
-        if "fedi_STACK" in os.environ:
+        if "FEDI_STACK" in os.environ:
             traceback.print_exc()
         else:
             click.echo(click.style(ex.args[0], fg="red"))
